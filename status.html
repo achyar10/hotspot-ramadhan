@@ -1,0 +1,102 @@
+<html>
+<head>
+	$(if refresh-timeout)
+	<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+	$(endif)
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content='Achyar' name='Author'/>
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<link rel="icon" href="favicon.png" type="image/x-icon">
+	<title>Achyar Hotspot | Status</title>
+	<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+	<link type="text/css" href="style.css" rel="stylesheet" media="screen, handheld" />
+	<style type="text/css">
+		.table{
+			font-size: 13px;
+		}
+		.col {
+			color: #000;
+		}
+	</style>
+	<script language="JavaScript">
+		<!--
+		$(if advert-pending == 'yes')
+		var popup = '';
+		function focusAdvert() {
+			if (window.focus) popup.focus();
+		}
+		function openAdvert() {
+			popup = open('$(link-advert)', 'hotspot_advert', '');
+			setTimeout("focusAdvert()", 1000);
+		}
+		$(endif)
+		function openLogout() {
+			if (window.name != 'hotspot_status') return true;
+			open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+			window.close();
+			return false;
+		}
+		//-->
+	</script>
+</head>
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
+$(if advert-pending == 'yes')
+onLoad="openAdvert()"
+$(endif)
+>
+<!-- Begin page content -->
+<div class="container">
+
+	<div class="row" id="pwd-container">
+		<div class="col-md-4"></div>
+
+		<div class="col-md-4">
+			<section class="login-form box">
+				$(if login-by == 'trial')
+				<h4 class="col">Welcome $(mac)</h4>
+				$(elif login-by != 'mac')
+				<h4 class="col">Welcome $(username)</h4>
+				$(endif)
+				<small>Selamat berselancar internet</small>
+				<hr style="border-top: 1px solid #000;" />
+				<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+					<table class="table table-bordered table-condensed">							
+						<tr><td align="right">IP Address</td>
+							<td width="20px" class="text-center">:</td><td>$(ip)</td></tr>
+							<tr><td align="right">Bytes up/down</td>
+								<td class="text-center">:</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+								$(if session-time-left)
+								<tr><td align="right">Connected / Left</td>
+									<td class="text-center">:</td><td>$(uptime) / $(session-time-left)</td></tr>
+									$(else)
+									<tr><td align="right">Connected</td>
+										<td class="text-center">:</td><td>$(uptime)</td></tr>
+										$(endif)
+									</table>
+									$(if login-by-mac != 'yes')
+
+									<div class="row">
+										<div class="col-md-6">
+											<button type="submit" class="btn btn-primary btn-block matik2" style="border-radius: 0px;">Logout</button>
+										</div>
+									</div>
+									$(endif)
+								</form>
+							</section>  
+							<div class="form-links">
+								<a href="#">Copyright &copy; <script type="text/javascript">document.write(new Date().getFullYear())</script> Achyar Anshorie&trade; </a>
+							</div>
+							
+						</div>
+
+						<div class="col-md-4"></div>
+
+
+					</div>
+
+				</div>
+
+			</body>
+			</html>
